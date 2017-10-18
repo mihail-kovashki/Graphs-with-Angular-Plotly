@@ -1,0 +1,12 @@
+<div >
+  <div>
+    <div class="profile-heading">
+      <h2>Users Found:</h2>
+    </div>
+    <div class="container profile-container">
+      <div *ngFor="let user of users; let i = index">
+        <profile-card [profile]="user" [index]="i" ></profile-card >
+      </div >
+    </div>
+  </div>
+</div >

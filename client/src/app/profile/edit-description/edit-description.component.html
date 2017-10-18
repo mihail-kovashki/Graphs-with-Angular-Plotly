@@ -1,0 +1,30 @@
+<div class="profile-heading">
+  <h1>Edit Description</h1>
+</div>
+<div class="container profile-container">
+  <form (submit)="submitEdit()" #descriptionForm='ngForm'>
+    <div class='form-group' >
+      <label class='control-label' for="description">Your Description</label >
+      <textarea
+        #desc="ngModel"
+        [(ngModel)]='description'
+        name="description"
+        id="description"
+        type=this.props.type
+        class='form-control'
+        minlength='50'
+        required></textarea >
+      <span class='help-block' [hidden] = 'desc.valid || desc.pristine'>
+        Description cannot be less than 50 symbols.
+      </span >
+
+      <input
+        type='submit'
+        class='btn btn-primary'
+        value='Edit Description'
+        [disabled] = '!descriptionForm.form.valid'/>
+
+      <a class='btn btn-default' routerLink='/' >Cancel</a >
+    </div >
+  </form >
+</div >

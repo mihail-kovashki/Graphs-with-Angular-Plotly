@@ -1,0 +1,33 @@
+<div >
+  <div>
+    <div class="profile-heading">
+      <h2>All Graphs:</h2>
+    </div>
+    <div class="container profile-container">
+      <div *ngFor="let item of pagedItems; let i = index">
+        <a routerLink="/graph/{{item._id}}">{{item.graphName}}</a>
+        <!-- <profile-card [profile]="item" [index]="i" ></profile-card > -->
+      </div >
+        <!-- pager -->
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination" >
+        <li >
+          <a (click)="setPage(1)" [ngClass]="{disabled:pager.currentPage === 1}" class="pager-links" >First</a >
+        </li >
+        <li >
+          <a (click)="setPage(pager.currentPage - 1)" [ngClass]="{disabled:pager.currentPage === 1}" class="pager-links" >Previous</a >
+        </li >
+        <li *ngFor="let page of pager.pages"
+            [ngClass]="{active:pager.currentPage === page}" >
+          <a (click)="setPage(page)" class="pager-links" >{{page}}</a >
+        </li >
+        <li >
+          <a (click)="setPage(pager.currentPage + 1)"
+            [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pager-links" >Next</a >
+        </li >
+        <li >
+          <a (click)="setPage(pager.totalPages)" [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pager-links" >Last</a >
+        </li >
+      </ul >
+    </div>
+  </div>
+</div >

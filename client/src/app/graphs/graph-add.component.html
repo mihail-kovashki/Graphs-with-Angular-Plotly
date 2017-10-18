@@ -1,0 +1,60 @@
+<div class="profile-heading">
+  <h1>Add link to new graph:</h1>
+</div>
+<div class="container profile-container">
+  <form #graphForm='ngForm' (submit)='addGraph()'>
+    <div class="form-group">
+      <label for="graphName">Graph Name</label>
+      <input
+        class="form-control"
+        name='graphName'
+        [(ngModel)] = 'graph.graphName'
+        id="graphName"
+        #graphName = 'ngModel'
+        required>
+      <span [hidden] = 'graphName.valid || graphName.pristine'>
+        Name cannot be empty!
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="graphLink">Graph Link</label>
+      <input
+        class="form-control"
+        name='graphLink'
+        [(ngModel)] = 'graph.graphLink'
+        id="graphLink"
+        #graphLink = 'ngModel'
+        required>
+      <span [hidden] = 'graphLink.valid || graphLink.pristine'>
+        Link cannot be empty!
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="graphCategory">Graph Category</label>
+      <select class='radio radio-inline'
+              [(ngModel)]='graph.graphCategory'
+              id='graphCategory'
+              name='graphCategory'
+              #graphCategory='ngModel'
+              required>
+        <option value="Business">Business</option>
+        <option value="Demography and Social">Demography and Social</option>
+        <option value="Macroeconomic">Macroeconomic</option>
+        <option value="Other">Other</option>
+      </select>
+      <span [hidden] = 'graphCategory.valid || graphCategory.pristine'>
+        Category is required!
+      </span>
+    </div>
+
+    <button
+      class="btn btn-success"
+      [disabled] = '!graphForm.form.valid'>
+      Add Graph
+    </button>
+
+    <a routerLink="/" class="btn btn-default">Cancel</a>
+  </form>
+</div>

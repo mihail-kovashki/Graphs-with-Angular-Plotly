@@ -1,0 +1,49 @@
+<div>
+  <iframe width="900" height="800" frameborder="0" scrolling="no" [src]="sanitizer.bypassSecurityTrustResourceUrl(graph.graphLink)"></iframe>
+</div> 
+
+<div class="profile-heading">
+  <h2>Comments</h2>
+</div>
+<div *ngIf="graph?.comments.length > 0" class="container profile-container">
+  <div *ngFor="let comment of graph.comments" class="post-body" >
+    <h5 className='media-heading' >
+      <i>Posted by </i>
+      <strong>{{ comment.authorName }}</strong>
+      <i>on: </i>
+      <strong>{{convertDate(comment.dateCreated)}}</strong>
+    </h5>
+    <p class="post-content">{{ comment.content }}</p>
+    <!-- <button *ngIf='canDelete || currentUserId === comment.author._id' class='btn btn-danger' (click)='deletePost(post)'>Delete</button> -->
+  </div>
+</div>
+<div *ngIf="graph?.comments.length === 0" class="container profile-container">
+  <h4>There are no comments to yet</h4>
+</div>
+
+<div class="profile-heading">
+  <h1>Add Comment:</h1>
+</div>
+<div class="container profile-container">
+  <form #commentForm='ngForm' (submit)='addComment()'>
+    <div class="form-group">
+      <label for="graphName">Comment:</label>
+      <input
+        class="form-control"
+        name='commentContent'
+        [(ngModel)] = 'comment.content'
+        id="commentContent"
+        #commentContent = 'ngModel'
+        required>
+      <span [hidden] = 'commentContent.valid || commentContent.pristine'>
+        Comment cannot be empty!
+      </span>
+    </div>
+
+    <button
+      class="btn btn-success"
+      [disabled] = '!commentForm.form.valid'>
+      Add Comment
+    </button>
+  </form>
+</div>

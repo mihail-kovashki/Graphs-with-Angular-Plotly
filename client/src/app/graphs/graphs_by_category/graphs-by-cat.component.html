@@ -1,0 +1,14 @@
+<div >
+    <div>
+      <div class="profile-heading">
+        <h2>{{category}}:</h2>
+      </div>
+      <div class="container profile-container">
+        <div *ngFor="let item of graphsByCategory; let i = index">
+          <a routerLink="/graph/{{item._id}}">{{item.graphName}}</a>
+          <!-- <profile-card [profile]="item" [index]="i" ></profile-card > -->
+        </div >
+      </div>
+    </div>
+  </div >
+  
